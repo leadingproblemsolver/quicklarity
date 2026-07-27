@@ -1,0 +1,11 @@
+import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+const root = new URL('../', import.meta.url);
+const dist = new URL('../dist/', import.meta.url);
+await rm(dist, { recursive: true, force: true });
+await mkdir(dist, { recursive: true });
+await cp(new URL('../index.html', import.meta.url), new URL('index.html', dist));
+await cp(new URL('../src', import.meta.url), new URL('src', dist), { recursive: true });
+if (existsSync(new URL('../public', import.meta.url))) await cp(new URL('../public', import.meta.url), new URL('public', dist), { recursive: true });
+await writeFile(new URL('.nojekyll', dist), '');
+console.log(`Built static release at ${dist.pathname}`);

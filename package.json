@@ -1,0 +1,18 @@
+{
+  "name": "quickarity",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local-first decision and three-day execution planner.",
+  "type": "module",
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs .",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.js",
+    "validate": "npm run test && npm run check && npm run build && node scripts/validate-static.mjs",
+    "preview": "node scripts/serve.mjs dist",
+    "check": "node --check src/index.js"
+  }
+}

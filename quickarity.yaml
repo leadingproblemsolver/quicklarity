@@ -1,0 +1,23 @@
+repo:
+  name: quickarity
+  version: 1.0.0
+  status: release_candidate
+  classification: user_facing_static_application
+product:
+  user: founders and operators with competing tasks
+  function: explicit task judgments to a bounded dated three-day execution plan
+  primary_input: outcome, audience, start date, constraints, and scored candidate tasks
+  primary_output: plan plus blocked/deferred lists in Markdown, JSON, ICS, and portable workspace JSON
+integration:
+  surfaces: [static_web, javascript_module, workspace_json, markdown, json, ics]
+  credentials_required: false
+verified_offline:
+  - deterministic scoring and bounded allocation
+  - blocked/deferred separation
+  - start-date preservation
+  - export escaping and workspace validation
+  - zero-dependency static build
+unverified_external:
+  - strategic outcome quality in a real workflow
+  - cold-user comprehension and repeated use
+  - adoption and retention
