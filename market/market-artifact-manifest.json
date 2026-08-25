@@ -1,0 +1,24 @@
+{
+  "repo": "leadingproblemsolver/quicklarity",
+  "artifact_id": "quickarity-three-day-execution-planner",
+  "artifact_url": "https://github.com/leadingproblemsolver/quicklarity",
+  "system": "Quickarity",
+  "wedge": "local-first deterministic three-day execution planning for overloaded founders and operators",
+  "target_roles": [
+    "Founder",
+    "Operator"
+  ],
+  "pain_signals": [
+    "too many competing tasks",
+    "blocked and deferred work mixed with executable work",
+    "difficulty choosing the six highest-value executable tasks across the next three days"
+  ],
+  "proof_refs": [
+    "README.md — bounded deterministic scoring and three-day dated planning workflow",
+    "src/lib/planner.js",
+    "docs/INTEGRATION.md",
+    "DEPLOYABILITY_DISTRIBUTION.md",
+    "npm run validate"
+  ],
+  "desired_consequence": "one founder or operator imports a real task set, executes from the generated three-day plan, and confirms, corrects, or rejects the ranking after observable work"
+}
