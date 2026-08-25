@@ -1,0 +1,37 @@
+name: Market Manifest Contract
+
+on:
+  push:
+    paths:
+      - "market/market-artifact-manifest.json"
+      - ".github/workflows/market-manifest.yml"
+  pull_request:
+    paths:
+      - "market/market-artifact-manifest.json"
+      - ".github/workflows/market-manifest.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validate routing contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("market/market-artifact-manifest.json").read_text(encoding="utf-8"))
+          for key in ("repo", "artifact_id", "artifact_url", "system", "wedge", "desired_consequence"):
+              assert isinstance(data.get(key), str) and data[key].strip(), f"{key} must be non-empty"
+          for key in ("target_roles", "proof_refs"):
+              assert isinstance(data.get(key), list) and data[key], f"{key} must be non-empty"
+              assert all(isinstance(item, str) and item.strip() for item in data[key])
+          assert data["repo"] == "leadingproblemsolver/quicklarity"
+          print(json.dumps({"valid": True, "artifact_id": data["artifact_id"]}, sort_keys=True))
+          PY
